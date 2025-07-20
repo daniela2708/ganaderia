@@ -26,3 +26,6 @@ dist-ssr
 # Data files and directories
 public/Censo_Nacional_Agropecuario_-_Ganado/
 public/DIVIPOLA-_C_digos_municipios_20250719.csv
+
+# Lock files
+bun.lockb
