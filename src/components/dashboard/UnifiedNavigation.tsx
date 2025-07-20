@@ -153,7 +153,7 @@ export const UnifiedNavigation = ({ tabs, activeTab, onTabChange }: UnifiedNavig
           onDragEnd={handleDragEnd}
         >
           <SortableContext items={tabItems} strategy={horizontalListSortingStrategy}>
-            <div className="flex gap-3 overflow-x-auto justify-center items-end pb-0 border-0">
+            <div className="flex gap-3 overflow-x-auto justify-center items-end pb-0 border-0 nav-tabs-container">
               {tabItems.map((tab) => (
                 <SortableTab
                   key={tab.id}

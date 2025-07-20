@@ -196,6 +196,16 @@ All colors MUST be HSL.
   background: hsl(var(--cattle-earth));
 }
 
+/* Hide scrollbar for navigation tabs */
+.nav-tabs-container::-webkit-scrollbar {
+  display: none;
+}
+
+.nav-tabs-container {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
 /* Fix for navigation tabs - remove any unwanted borders */
 .nav-tab-item {
   border: none !important;
@@ -210,4 +220,26 @@ All colors MUST be HSL.
 .nav-tab-item:focus {
   border: none !important;
   outline: none !important;
+}
+
+/* Additional fixes for navigation container */
+.nav-tabs-container {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.nav-tabs-container::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  display: none !important;
+}
+
+/* Ensure no scroll indicators appear */
+nav .overflow-x-auto {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+nav .overflow-x-auto::-webkit-scrollbar {
+  display: none !important;
 }
