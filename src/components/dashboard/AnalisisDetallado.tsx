@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import { AnimalData } from '@/types/dashboard';
 import { Activity, Calendar, Users, PieChart, TrendingUp } from 'lucide-react';
+import { useI18n } from '@/lib/i18n';
 
 interface AnalisisDetalladoProps {
   animalData: AnimalData[];
@@ -10,6 +11,7 @@ interface AnalisisDetalladoProps {
 }
 
 export const AnalisisDetallado = ({ animalData, allAnimalData, selectedYear }: AnalisisDetalladoProps) => {
+  const { t } = useI18n();
   const barrasAnualesRef = useRef<SVGSVGElement>(null);
   const barrasApiladasRef = useRef<SVGSVGElement>(null);
   const donaEdadRef = useRef<SVGSVGElement>(null);
@@ -437,7 +439,7 @@ export const AnalisisDetallado = ({ animalData, allAnimalData, selectedYear }: A
         .attr("dy", "1em")
         .style("font-size", "12px")
         .style("fill", "#6B7280")
-        .text("Total Bovinos");
+        .text(t('charts.totalCattle'));
     }
 
     // Crear gráfico de dona por sexo
@@ -529,7 +531,7 @@ export const AnalisisDetallado = ({ animalData, allAnimalData, selectedYear }: A
         .attr("dy", "1em")
         .style("font-size", "12px")
         .style("fill", "#6B7280")
-        .text("Total Bovinos");
+        .text(t('charts.totalCattle'));
     }
 
   }, [animalData, allAnimalData, selectedYear]);
@@ -537,7 +539,7 @@ export const AnalisisDetallado = ({ animalData, allAnimalData, selectedYear }: A
   return (
     <div className="bg-white p-8 rounded-lg shadow-lg border border-amber-100">
       <h2 className="text-2xl font-bold text-amber-900 mb-6 text-center">
-        Análisis Detallado de Métricas
+        {t('charts.detailedAnalysis')}
       </h2>
       
       {/* Cuadrícula 2x2 */}
@@ -545,7 +547,7 @@ export const AnalisisDetallado = ({ animalData, allAnimalData, selectedYear }: A
         {/* Gráfico Superior Izquierdo */}
         <div className="bg-white rounded-lg p-4 border-2 border-amber-200 shadow-md relative" ref={containerAnualesRef}>
           <h3 className="text-center font-semibold mb-4 text-gray-800">
-            Número de Bovinos Anuales
+            {t('charts.annualCattle')}
           </h3>
           <div className="flex justify-center">
             <svg ref={barrasAnualesRef}></svg>
@@ -566,7 +568,7 @@ export const AnalisisDetallado = ({ animalData, allAnimalData, selectedYear }: A
                   <Calendar className="h-4 w-4 text-white" />
                 </div>
                 <h4 className="font-semibold text-amber-900 text-sm">
-                  Año {tooltipAnual.año}
+                  {t('charts.year')} {tooltipAnual.año}
                 </h4>
               </div>
               
@@ -575,7 +577,7 @@ export const AnalisisDetallado = ({ animalData, allAnimalData, selectedYear }: A
                   <Activity className="h-4 w-4 text-white" />
                 </div>
                 <div>
-                  <p className="text-xs text-amber-700 font-medium">Total Bovinos</p>
+                  <p className="text-xs text-amber-700 font-medium">{t('charts.totalCattle')}</p>
                   <p className="text-lg font-bold text-amber-900">
                     {tooltipAnual.total.toLocaleString('es-CO')}
                   </p>
@@ -588,7 +590,7 @@ export const AnalisisDetallado = ({ animalData, allAnimalData, selectedYear }: A
                     <TrendingUp className="h-4 w-4 text-white" />
                   </div>
                   <div>
-                    <p className="text-xs text-amber-700 font-medium">Crecimiento YoY</p>
+                    <p className="text-xs text-amber-700 font-medium">{t('charts.yoyGrowth')}</p>
                     <p className={`text-lg font-bold ${tooltipAnual.yoy >= 0 ? 'text-green-700' : 'text-red-700'}`}>
                       {tooltipAnual.yoy >= 0 ? '+' : ''}{tooltipAnual.yoy.toFixed(1)}%
                     </p>
@@ -602,7 +604,7 @@ export const AnalisisDetallado = ({ animalData, allAnimalData, selectedYear }: A
         {/* Gráfico Superior Derecho */}
         <div className="bg-white rounded-lg p-4 border-2 border-blue-200 shadow-md relative" ref={containerApiladasRef}>
           <h3 className="text-center font-semibold mb-4 text-gray-800">
-            Distribución de Bovinos por Edad y Sexo
+            {t('charts.ageSexDistribution')}
           </h3>
           <div className="flex justify-center">
             <svg ref={barrasApiladasRef}></svg>
@@ -632,7 +634,7 @@ export const AnalisisDetallado = ({ animalData, allAnimalData, selectedYear }: A
                   <Calendar className="h-4 w-4 text-white" />
                 </div>
                 <div>
-                  <p className="text-xs text-amber-700 font-medium">Rango de Edad</p>
+                  <p className="text-xs text-amber-700 font-medium">{t('charts.ageRange')}</p>
                   <p className="text-sm font-semibold text-amber-900">
                     {tooltipApiladas.edad}
                   </p>
@@ -644,7 +646,7 @@ export const AnalisisDetallado = ({ animalData, allAnimalData, selectedYear }: A
                   <Activity className="h-4 w-4 text-white" />
                 </div>
                 <div>
-                  <p className="text-xs text-amber-700 font-medium">Total Bovinos</p>
+                  <p className="text-xs text-amber-700 font-medium">{t('charts.totalCattle')}</p>
                   <p className="text-lg font-bold text-amber-900">
                     {tooltipApiladas.total.toLocaleString('es-CO')}
                   </p>
@@ -656,7 +658,7 @@ export const AnalisisDetallado = ({ animalData, allAnimalData, selectedYear }: A
                   <PieChart className="h-4 w-4 text-white" />
                 </div>
                 <div>
-                  <p className="text-xs text-amber-700 font-medium">Porcentaje del Género</p>
+                  <p className="text-xs text-amber-700 font-medium">{t('charts.genderPercentage')}</p>
                   <p className="text-lg font-bold text-amber-900">
                     {tooltipApiladas.porcentaje.toFixed(1)}%
                   </p>
@@ -669,7 +671,7 @@ export const AnalisisDetallado = ({ animalData, allAnimalData, selectedYear }: A
         {/* Gráfico Inferior Izquierdo */}
         <div className="bg-white rounded-lg p-4 border-2 border-green-200 shadow-md relative" ref={containerEdadRef}>
           <h3 className="text-center font-semibold mb-4 text-gray-800">
-            Proporción de Bovinos por Edad
+            {t('charts.ageProportion')}
           </h3>
           <div className="flex justify-center">
             <svg ref={donaEdadRef}></svg>
@@ -699,7 +701,7 @@ export const AnalisisDetallado = ({ animalData, allAnimalData, selectedYear }: A
                   <Activity className="h-4 w-4 text-white" />
                 </div>
                 <div>
-                  <p className="text-xs text-amber-700 font-medium">Total Bovinos</p>
+                  <p className="text-xs text-amber-700 font-medium">{t('charts.totalCattle')}</p>
                   <p className="text-lg font-bold text-amber-900">
                     {tooltipEdad.total.toLocaleString('es-CO')}
                   </p>
@@ -711,7 +713,7 @@ export const AnalisisDetallado = ({ animalData, allAnimalData, selectedYear }: A
                   <PieChart className="h-4 w-4 text-white" />
                 </div>
                 <div>
-                  <p className="text-xs text-amber-700 font-medium">Porcentaje</p>
+                  <p className="text-xs text-amber-700 font-medium">{t('charts.percentage')}</p>
                   <p className="text-lg font-bold text-amber-900">
                     {tooltipEdad.porcentaje.toFixed(1)}%
                   </p>
@@ -724,7 +726,7 @@ export const AnalisisDetallado = ({ animalData, allAnimalData, selectedYear }: A
         {/* Gráfico Inferior Derecho */}
         <div className="bg-white rounded-lg p-4 border-2 border-pink-200 shadow-md relative" ref={containerSexoRef}>
           <h3 className="text-center font-semibold mb-4 text-gray-800">
-            Proporción de Bovinos por Sexo
+            {t('charts.sexProportion')}
           </h3>
           <div className="flex justify-center">
             <svg ref={donaSexoRef}></svg>
@@ -754,7 +756,7 @@ export const AnalisisDetallado = ({ animalData, allAnimalData, selectedYear }: A
                   <Activity className="h-4 w-4 text-white" />
                 </div>
                 <div>
-                  <p className="text-xs text-amber-700 font-medium">Total Bovinos</p>
+                  <p className="text-xs text-amber-700 font-medium">{t('charts.totalCattle')}</p>
                   <p className="text-lg font-bold text-amber-900">
                     {tooltipSexo.total.toLocaleString('es-CO')}
                   </p>
@@ -766,7 +768,7 @@ export const AnalisisDetallado = ({ animalData, allAnimalData, selectedYear }: A
                   <PieChart className="h-4 w-4 text-white" />
                 </div>
                 <div>
-                  <p className="text-xs text-amber-700 font-medium">Porcentaje</p>
+                  <p className="text-xs text-amber-700 font-medium">{t('charts.percentage')}</p>
                   <p className="text-lg font-bold text-amber-900">
                     {tooltipSexo.porcentaje.toFixed(1)}%
                   </p>

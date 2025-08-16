@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Activity } from 'lucide-react';
 import cattleIcon from '@/assets/cattle-icon.png';
-import { Button } from '@/components/ui/button';
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select';
 import { useI18n } from '@/lib/i18n';
 import {
   DndContext,
@@ -103,7 +103,7 @@ interface UnifiedNavigationProps {
 
 export const UnifiedNavigation = ({ tabs, activeTab, onTabChange }: UnifiedNavigationProps) => {
   const [tabItems, setTabItems] = useState(tabs);
-  const { t, lang, toggleLanguage } = useI18n();
+  const { t, lang, setLanguage } = useI18n();
 
   useEffect(() => {
     setTabItems(tabs);
@@ -145,9 +145,15 @@ export const UnifiedNavigation = ({ tabs, activeTab, onTabChange }: UnifiedNavig
                 {t('header.title')}
               </h1>
             </div>
-            <Button variant="outline" size="sm" onClick={toggleLanguage} className="mt-2 sm:mt-0">
-              {lang === 'en' ? 'ES' : 'EN'}
-            </Button>
+            <Select value={lang} onValueChange={setLanguage}>
+              <SelectTrigger className="w-20 mt-2 sm:mt-0">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="en">EN</SelectItem>
+                <SelectItem value="es">ES</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
         </div>
       </div>

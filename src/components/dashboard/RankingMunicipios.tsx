@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 import { AnimalData, FarmData } from '@/types/dashboard';
 import { Activity, MapPin, TrendingUp, Building2 } from 'lucide-react';
+import { useI18n } from '@/lib/i18n';
 
 interface RankingMunicipiosProps {
   animalData: AnimalData[];
@@ -29,6 +30,7 @@ interface TooltipState {
 }
 
 export const RankingMunicipios = ({ animalData, farmData, selectedYear }: RankingMunicipiosProps) => {
+  const { t } = useI18n();
   const svgRef = useRef<SVGSVGElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -429,7 +431,7 @@ export const RankingMunicipios = ({ animalData, farmData, selectedYear }: Rankin
                 <Activity className="h-4 w-4 text-white" />
               </div>
               <div>
-                <p className="text-xs text-amber-700 font-medium">Total Bovinos</p>
+                <p className="text-xs text-amber-700 font-medium">{t('charts.totalCattle')}</p>
                 <p className="text-lg font-bold text-amber-900">
                   {tooltip.totalBovinos.toLocaleString('es-CO')}
                 </p>
@@ -441,7 +443,7 @@ export const RankingMunicipios = ({ animalData, farmData, selectedYear }: Rankin
                 <Building2 className="h-4 w-4 text-white" />
               </div>
               <div>
-                <p className="text-xs text-amber-700 font-medium">Total Fincas</p>
+                <p className="text-xs text-amber-700 font-medium">{t('charts.totalFarms')}</p>
                 <p className="text-sm font-bold text-amber-900">
                   {tooltip.totalFincas.toLocaleString('es-CO')}
                 </p>
@@ -453,9 +455,9 @@ export const RankingMunicipios = ({ animalData, farmData, selectedYear }: Rankin
                 <TrendingUp className="h-4 w-4 text-white" />
               </div>
               <div>
-                <p className="text-xs text-amber-700 font-medium">Promedio por Finca</p>
+                <p className="text-xs text-amber-700 font-medium">{t('charts.averagePerFarm')}</p>
                 <p className="text-sm font-bold text-amber-900">
-                  {tooltip.promedioFinca.toLocaleString('es-CO', { maximumFractionDigits: 1 })} bovinos
+                  {tooltip.promedioFinca.toLocaleString('es-CO', { maximumFractionDigits: 1 })} {t('charts.cattle')}
                 </p>
               </div>
             </div>

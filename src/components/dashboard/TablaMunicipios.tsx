@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { AnimalData, FarmData } from '@/types/dashboard';
+import { useI18n } from '@/lib/i18n';
 
 interface TablaMunicipiosProps {
   animalData: AnimalData[];
@@ -18,6 +19,7 @@ interface MunicipalitySummary {
 }
 
 export const TablaMunicipios = ({ animalData, farmData, selectedYear, selectedDepartamento }: TablaMunicipiosProps) => {
+  const { t } = useI18n();
   console.log('=== TablaMunicipios ===');
   console.log('animalData length:', animalData.length);
   console.log('farmData length:', farmData.length);
@@ -116,10 +118,10 @@ export const TablaMunicipios = ({ animalData, farmData, selectedYear, selectedDe
     <div className="bg-white rounded-lg shadow p-4">
       <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4">
         <h3 className="text-sm font-medium text-blue-900 text-center">
-          🏛️ Datos por Municipio - {selectedYear}
+          🏛️ {t('tabs.municipalities')} - {selectedYear}
           {selectedDepartamento && (
             <span className="block text-xs text-blue-700 mt-1">
-              Departamento: {selectedDepartamento}
+              {t('tabs.department')}: {selectedDepartamento}
             </span>
           )}
         </h3>
@@ -129,14 +131,14 @@ export const TablaMunicipios = ({ animalData, farmData, selectedYear, selectedDe
         <table className="w-full text-sm">
           <thead className="sticky top-0 bg-white">
             <tr className="border-b border-gray-200">
-              <th className="text-left py-2 px-2 font-medium text-gray-700">Municipio</th>
+              <th className="text-left py-2 px-2 font-medium text-gray-700">{t('tabs.municipalities')}</th>
               {!selectedDepartamento && (
-                <th className="text-left py-2 px-2 font-medium text-gray-700">Departamento</th>
+                <th className="text-left py-2 px-2 font-medium text-gray-700">{t('tabs.department')}</th>
               )}
-              <th className="text-right py-2 px-2 font-medium text-gray-700">Total Bovinos</th>
-              <th className="text-right py-2 px-2 font-medium text-gray-700">% Participación</th>
-              <th className="text-right py-2 px-2 font-medium text-gray-700">Total Fincas</th>
-              <th className="text-right py-2 px-2 font-medium text-gray-700">Promedio/Finca</th>
+              <th className="text-right py-2 px-2 font-medium text-gray-700">{t('charts.totalCattle')}</th>
+              <th className="text-right py-2 px-2 font-medium text-gray-700">% {t('charts.percentage')}</th>
+              <th className="text-right py-2 px-2 font-medium text-gray-700">{t('charts.totalFarms')}</th>
+              <th className="text-right py-2 px-2 font-medium text-gray-700">{t('charts.averagePerFarm')}</th>
             </tr>
           </thead>
           <tbody>
