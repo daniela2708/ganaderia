@@ -1,4 +1,5 @@
 import { Calendar } from 'lucide-react';
+import { useI18n } from '@/lib/i18n';
 
 interface YearFilterSectionProps {
   selectedYear: number;
@@ -6,16 +7,17 @@ interface YearFilterSectionProps {
   availableYears: number[];
 }
 
-export const YearFilterSection = ({ 
-  selectedYear, 
-  onYearChange, 
-  availableYears 
+export const YearFilterSection = ({
+  selectedYear,
+  onYearChange,
+  availableYears
 }: YearFilterSectionProps) => {
+  const { t } = useI18n();
   return (
     <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 shadow-sm">
       <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3">
-          <label className="text-amber-900 font-medium text-sm">Año de Análisis:</label>
+          <label className="text-amber-900 font-medium text-sm">{t('filters.year')}</label>
           <select
             className="w-full sm:w-auto bg-white border border-amber-300 rounded-md px-3 py-2 text-amber-900 font-semibold text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
             value={selectedYear}

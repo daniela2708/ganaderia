@@ -1,6 +1,7 @@
 import { Calendar, MapPin } from 'lucide-react';
 import { AnimalData } from '@/types/dashboard';
 import { SearchSelect } from '@/components/ui/search-select';
+import { useI18n } from '@/lib/i18n';
 
 interface MunicipiosFilterSectionProps {
   selectedYear: number;
@@ -11,9 +12,9 @@ interface MunicipiosFilterSectionProps {
   animalData: AnimalData[];
 }
 
-export const MunicipiosFilterSection = ({ 
-  selectedYear, 
-  onYearChange, 
+export const MunicipiosFilterSection = ({
+  selectedYear,
+  onYearChange,
   availableYears,
   selectedDepartamento,
   onDepartamentoChange,
@@ -23,8 +24,10 @@ export const MunicipiosFilterSection = ({
   const departamentos = Array.from(new Set(animalData.map(d => d.DEPARTAMENTO))).sort();
   
   // Convertir a formato para SearchSelect
+  const { t } = useI18n();
+
   const departamentoOptions = [
-    { value: '', label: 'Todos los Departamentos' },
+    { value: '', label: t('filters.allDepartments') },
     ...departamentos.map(departamento => ({
       value: departamento,
       label: departamento.charAt(0).toUpperCase() + departamento.slice(1).toLowerCase()
@@ -37,7 +40,7 @@ export const MunicipiosFilterSection = ({
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
           {/* Filtro de Año */}
           <div className="flex items-center gap-3">
-            <label className="text-amber-900 font-medium text-sm">Año de Análisis:</label>
+            <label className="text-amber-900 font-medium text-sm">{t('filters.year')}</label>
             <select
               className="w-full sm:w-auto bg-white border border-amber-300 rounded-md px-3 py-2 text-amber-900 font-semibold text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
               value={selectedYear}
@@ -53,12 +56,12 @@ export const MunicipiosFilterSection = ({
 
           {/* Filtro de Departamento */}
           <div className="flex items-center gap-3">
-            <label className="text-amber-900 font-medium text-sm">Departamento:</label>
+            <label className="text-amber-900 font-medium text-sm">{t('filters.department')}</label>
             <SearchSelect
               value={selectedDepartamento}
               onChange={onDepartamentoChange}
               options={departamentoOptions}
-              placeholder="Todos los Departamentos"
+              placeholder={t('filters.allDepartments')}
             />
           </div>
         </div>

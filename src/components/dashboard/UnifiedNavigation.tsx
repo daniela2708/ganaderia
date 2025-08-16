@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Activity } from 'lucide-react';
 import cattleIcon from '@/assets/cattle-icon.png';
+import { Button } from '@/components/ui/button';
+import { useI18n } from '@/lib/i18n';
 import {
   DndContext,
   closestCenter,
@@ -101,7 +103,8 @@ interface UnifiedNavigationProps {
 
 export const UnifiedNavigation = ({ tabs, activeTab, onTabChange }: UnifiedNavigationProps) => {
   const [tabItems, setTabItems] = useState(tabs);
-  
+  const { t, lang, toggleLanguage } = useI18n();
+
   useEffect(() => {
     setTabItems(tabs);
   }, [tabs]);
@@ -131,15 +134,20 @@ export const UnifiedNavigation = ({ tabs, activeTab, onTabChange }: UnifiedNavig
       {/* Header Section */}
       <div className="bg-white border-b border-border">
         <div className="container mx-auto px-4 py-2 sm:px-6 sm:py-3">
-          <div className="flex flex-col items-center justify-center gap-2 sm:flex-row sm:gap-3">
-            <img
-              src={cattleIcon}
-              alt="Cattle Analysis"
-              className="w-16 h-16 p-1 sm:w-20 sm:h-20 sm:p-2 object-contain drop-shadow-sm rounded-full bg-white/10"
-            />
-            <h1 className="text-lg font-bold text-center sm:text-left sm:text-2xl text-foreground tracking-wide">
-              Sistema de Análisis Ganadero Bovino
-            </h1>
+          <div className="flex flex-col items-center justify-center gap-2 sm:flex-row sm:justify-between sm:gap-3">
+            <div className="flex items-center gap-3">
+              <img
+                src={cattleIcon}
+                alt="Cattle Analysis"
+                className="w-16 h-16 p-1 sm:w-20 sm:h-20 sm:p-2 object-contain drop-shadow-sm rounded-full bg-white/10"
+              />
+              <h1 className="text-lg font-bold text-center sm:text-left sm:text-2xl text-foreground tracking-wide">
+                {t('header.title')}
+              </h1>
+            </div>
+            <Button variant="outline" size="sm" onClick={toggleLanguage} className="mt-2 sm:mt-0">
+              {lang === 'en' ? 'ES' : 'EN'}
+            </Button>
           </div>
         </div>
       </div>

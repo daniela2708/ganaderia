@@ -1,4 +1,5 @@
 import { X, Calendar, MapPin, Building } from 'lucide-react';
+import { useI18n } from '@/lib/i18n';
 
 interface ActiveFiltersTagsProps {
   selectedYear: number;
@@ -15,6 +16,7 @@ export const ActiveFiltersTags = ({
   onClearDepartamento,
   onClearMunicipio
 }: ActiveFiltersTagsProps) => {
+  const { t } = useI18n();
   const hasActiveFilters = selectedDepartamento || selectedMunicipio;
 
   if (!hasActiveFilters) {
@@ -27,7 +29,7 @@ export const ActiveFiltersTags = ({
         <div className="bg-amber-600 rounded-full p-1">
           <Calendar className="h-3 w-3 text-white" />
         </div>
-        <span className="text-xs font-medium text-amber-800">Filtros Activos:</span>
+        <span className="text-xs font-medium text-amber-800">{t('filters.active')}</span>
       </div>
       
       <div className="flex flex-wrap gap-2">
@@ -35,7 +37,7 @@ export const ActiveFiltersTags = ({
         <div className="flex items-center gap-1.5 bg-amber-100 border border-amber-300 rounded-full px-3 py-1.5">
           <Calendar className="h-3 w-3 text-amber-700" />
           <span className="text-xs font-medium text-amber-800">
-            Año {selectedYear}
+            {t('filters.yearTag', { year: selectedYear })}
           </span>
         </div>
 
@@ -49,7 +51,7 @@ export const ActiveFiltersTags = ({
             <button
               onClick={onClearDepartamento}
               className="ml-1 hover:bg-blue-200 rounded-full p-0.5 transition-colors"
-              title="Limpiar departamento"
+              title={t('filters.clearDepartment')}
             >
               <X className="h-3 w-3 text-blue-600" />
             </button>
@@ -66,7 +68,7 @@ export const ActiveFiltersTags = ({
             <button
               onClick={onClearMunicipio}
               className="ml-1 hover:bg-green-200 rounded-full p-0.5 transition-colors"
-              title="Limpiar municipio"
+              title={t('filters.clearMunicipality')}
             >
               <X className="h-3 w-3 text-green-600" />
             </button>

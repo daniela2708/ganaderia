@@ -1,6 +1,7 @@
 import { Calendar, MapPin, Building } from 'lucide-react';
 import { AnimalData } from '@/types/dashboard';
 import { SearchSelect } from '@/components/ui/search-select';
+import { useI18n } from '@/lib/i18n';
 
 interface MetricasFilterSectionProps {
   selectedYear: number;
@@ -25,10 +26,12 @@ export const MetricasFilterSection = ({
 }: MetricasFilterSectionProps) => {
   // Obtener departamentos únicos de los datos
   const departamentos = Array.from(new Set(animalData.map(d => d.DEPARTAMENTO))).sort();
-  
+
   // Convertir a formato para SearchSelect
+  const { t } = useI18n();
+
   const departamentoOptions = [
-    { value: '', label: 'Todos los Departamentos' },
+    { value: '', label: t('filters.allDepartments') },
     ...departamentos.map(departamento => ({
       value: departamento,
       label: departamento.charAt(0).toUpperCase() + departamento.slice(1).toLowerCase()
@@ -46,7 +49,7 @@ export const MetricasFilterSection = ({
     
   // Convertir municipios a formato para SearchSelect
   const municipioOptions = [
-    { value: '', label: selectedDepartamento ? 'Todos los Municipios' : 'Seleccione un Departamento' },
+    { value: '', label: selectedDepartamento ? t('filters.allMunicipalities') : t('filters.selectDepartment') },
     ...municipiosDelDepartamento.map(municipio => ({
       value: municipio,
       label: municipio.charAt(0).toUpperCase() + municipio.slice(1).toLowerCase()
@@ -65,7 +68,7 @@ export const MetricasFilterSection = ({
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
           {/* Filtro de Año */}
           <div className="flex items-center gap-3">
-            <label className="text-amber-900 font-medium text-sm">Año de Análisis:</label>
+            <label className="text-amber-900 font-medium text-sm">{t('filters.year')}</label>
             <select
               className="w-full sm:w-auto bg-white border border-amber-300 rounded-md px-3 py-2 text-amber-900 font-semibold text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
               value={selectedYear}
@@ -81,23 +84,23 @@ export const MetricasFilterSection = ({
 
           {/* Filtro de Departamento */}
           <div className="flex items-center gap-3">
-            <label className="text-amber-900 font-medium text-sm">Departamento:</label>
+            <label className="text-amber-900 font-medium text-sm">{t('filters.department')}</label>
             <SearchSelect
               value={selectedDepartamento}
               onChange={handleDepartamentoChange}
               options={departamentoOptions}
-              placeholder="Todos los Departamentos"
+              placeholder={t('filters.allDepartments')}
             />
           </div>
 
           {/* Filtro de Municipio */}
           <div className="flex items-center gap-3">
-            <label className="text-amber-900 font-medium text-sm">Municipio:</label>
+            <label className="text-amber-900 font-medium text-sm">{t('filters.municipality')}</label>
             <SearchSelect
               value={selectedMunicipio}
               onChange={onMunicipioChange}
               options={municipioOptions}
-              placeholder={selectedDepartamento ? "Todos los Municipios" : "Seleccione un Departamento"}
+              placeholder={selectedDepartamento ? t('filters.allMunicipalities') : t('filters.selectDepartment')}
               disabled={!selectedDepartamento}
             />
           </div>

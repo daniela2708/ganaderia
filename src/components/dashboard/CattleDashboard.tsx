@@ -4,30 +4,32 @@ import { UnifiedNavigation } from './UnifiedNavigation';
 import { TabContent } from './TabContent';
 import { TabItem } from '@/types/dashboard';
 import { Loader } from 'lucide-react';
+import { useI18n } from '@/lib/i18n';
 
 export const CattleDashboard = () => {
   const { animalData, farmData, loading, error } = useCSVData();
   const [activeTab, setActiveTab] = useState('metricas-generales');
+  const { t } = useI18n();
 
   const tabs: TabItem[] = [
     {
       id: 'metricas-generales',
-      title: 'Análisis Ganadero Nacional',
+      title: t('tabs.national'),
       content: null
     },
     {
       id: 'departamento',
-      title: 'Departamento',
+      title: t('tabs.department'),
       content: null
     },
     {
       id: 'municipios',
-      title: 'Municipios',
+      title: t('tabs.municipalities'),
       content: null
     },
     {
       id: 'fuente-datos',
-      title: 'Fuente de Datos',
+      title: t('tabs.dataSource'),
       content: null
     }
   ];
@@ -57,7 +59,7 @@ export const CattleDashboard = () => {
         <div className="pt-32 sm:pt-40 flex items-center justify-center">
           <div className="flex items-center gap-3 text-muted-foreground">
             <Loader className="h-6 w-6 animate-spin" />
-            <span className="text-lg">Cargando datos ganaderos...</span>
+            <span className="text-lg">{t('loading')}</span>
           </div>
         </div>
       </div>
@@ -74,7 +76,7 @@ export const CattleDashboard = () => {
         />
         <div className="pt-32 sm:pt-40 flex items-center justify-center">
           <div className="text-center">
-            <h2 className="text-2xl font-bold text-destructive mb-2">Error al cargar datos</h2>
+            <h2 className="text-2xl font-bold text-destructive mb-2">{t('error.title')}</h2>
             <p className="text-muted-foreground">{error}</p>
           </div>
         </div>
