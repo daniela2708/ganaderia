@@ -54,7 +54,7 @@ export const CattleDashboard = () => {
           activeTab={activeTab}
           onTabChange={setActiveTab}
         />
-        <div className="pt-40 flex items-center justify-center">
+        <div className="pt-32 sm:pt-40 flex items-center justify-center">
           <div className="flex items-center gap-3 text-muted-foreground">
             <Loader className="h-6 w-6 animate-spin" />
             <span className="text-lg">Cargando datos ganaderos...</span>
@@ -72,7 +72,7 @@ export const CattleDashboard = () => {
           activeTab={activeTab}
           onTabChange={setActiveTab}
         />
-        <div className="pt-40 flex items-center justify-center">
+        <div className="pt-32 sm:pt-40 flex items-center justify-center">
           <div className="text-center">
             <h2 className="text-2xl font-bold text-destructive mb-2">Error al cargar datos</h2>
             <p className="text-muted-foreground">{error}</p>
@@ -93,7 +93,7 @@ export const CattleDashboard = () => {
         }}
       />
       
-      <main className="container mx-auto px-6 py-8 pt-40">
+      <main className="container mx-auto px-4 py-8 pt-32 sm:px-6 sm:pt-40">
         <TabContent
           tabId={activeTab}
           animalData={animalData}
