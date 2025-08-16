@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Activity, Building2, TrendingUp, MapPin } from 'lucide-react';
 import { AnimalData, FarmData } from '@/types/dashboard';
+import { useI18n } from '@/lib/i18n';
 
 interface KPICardsProps {
   animalData: AnimalData[];
@@ -9,6 +10,7 @@ interface KPICardsProps {
 }
 
 export const KPICards = ({ animalData, farmData, selectedYear }: KPICardsProps) => {
+  const { t } = useI18n();
   const yearData = animalData.filter(item => item.AÑO === selectedYear);
   const yearFarmData = farmData.filter(item => item.AÑO === selectedYear);
   
@@ -21,25 +23,25 @@ export const KPICards = ({ animalData, farmData, selectedYear }: KPICardsProps) 
 
   const kpis = [
     {
-      title: "Total Bovinos",
+      title: t('kpi.totalCattle'),
       value: totalAnimals.toLocaleString('es-CO'),
       icon: Activity,
       color: "text-amber-700"
     },
     {
-      title: "Total Fincas",
+      title: t('kpi.totalFarms'),
       value: totalFarms.toLocaleString('es-CO'),
       icon: Building2,
       color: "text-amber-600"
     },
     {
-      title: "Promedio por Finca",
+      title: t('kpi.averagePerFarm'),
       value: avgAnimalsPerFarm.toLocaleString('es-CO'),
       icon: TrendingUp,
       color: "text-orange-600"
     },
     {
-      title: "Departamentos",
+      title: t('kpi.departments'),
       value: uniqueDepartments.toString(),
       icon: MapPin,
       color: "text-yellow-700"

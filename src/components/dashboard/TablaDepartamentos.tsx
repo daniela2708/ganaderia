@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { AnimalData, FarmData } from '@/types/dashboard';
+import { useI18n } from '@/lib/i18n';
 
 interface TablaDepartamentosProps {
   animalData: AnimalData[];
@@ -16,6 +17,7 @@ interface DepartmentSummary {
 }
 
 export const TablaDepartamentos = ({ animalData, farmData, selectedYear }: TablaDepartamentosProps) => {
+  const { t } = useI18n();
   console.log('=== TablaDepartamentos ===');
   console.log('animalData length:', animalData.length);
   console.log('farmData length:', farmData.length);
@@ -99,7 +101,7 @@ export const TablaDepartamentos = ({ animalData, farmData, selectedYear }: Tabla
     <div className="bg-white rounded-lg shadow p-4">
       <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-4">
         <h3 className="text-sm font-medium text-green-900 text-center">
-          🗂️ Datos por Departamento - {selectedYear}
+          🗂️ {t('tabs.department')} - {selectedYear}
         </h3>
       </div>
 
@@ -107,11 +109,11 @@ export const TablaDepartamentos = ({ animalData, farmData, selectedYear }: Tabla
         <table className="w-full text-sm">
           <thead className="sticky top-0 bg-white">
             <tr className="border-b border-gray-200">
-              <th className="text-left py-2 px-2 font-medium text-gray-700">Departamento</th>
-              <th className="text-right py-2 px-2 font-medium text-gray-700">Total Bovinos</th>
-              <th className="text-right py-2 px-2 font-medium text-gray-700">% Participación</th>
-              <th className="text-right py-2 px-2 font-medium text-gray-700">Total Fincas</th>
-              <th className="text-right py-2 px-2 font-medium text-gray-700">Promedio/Finca</th>
+              <th className="text-left py-2 px-2 font-medium text-gray-700">{t('tabs.department')}</th>
+              <th className="text-right py-2 px-2 font-medium text-gray-700">{t('charts.totalCattle')}</th>
+              <th className="text-right py-2 px-2 font-medium text-gray-700">% {t('charts.percentage')}</th>
+              <th className="text-right py-2 px-2 font-medium text-gray-700">{t('charts.totalFarms')}</th>
+              <th className="text-right py-2 px-2 font-medium text-gray-700">{t('charts.averagePerFarm')}</th>
             </tr>
           </thead>
           <tbody>
