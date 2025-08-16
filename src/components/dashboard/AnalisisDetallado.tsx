@@ -329,7 +329,7 @@ export const AnalisisDetallado = ({ animalData, allAnimalData, selectedYear }: A
       // Ejes
       g.append("g")
         .attr("transform", `translate(0,${height})`)
-        .call(d3.axisBottom(xScale))
+        .call(d3.axisBottom(xScale).tickFormat(d => t(`categories.age.${String(d)}`)))
         .selectAll("text")
         .style("font-size", "10px")
         .style("fill", "#374151")
@@ -625,7 +625,7 @@ export const AnalisisDetallado = ({ animalData, allAnimalData, selectedYear }: A
                   <Users className="h-4 w-4 text-white" />
                 </div>
                 <h4 className="font-semibold text-amber-900 text-sm">
-                  {tooltipApiladas.sexo}
+                  {t(`categories.sex.${tooltipApiladas.sexo}`)}
                 </h4>
               </div>
               
@@ -636,7 +636,7 @@ export const AnalisisDetallado = ({ animalData, allAnimalData, selectedYear }: A
                 <div>
                   <p className="text-xs text-amber-700 font-medium">{t('charts.ageRange')}</p>
                   <p className="text-sm font-semibold text-amber-900">
-                    {tooltipApiladas.edad}
+                    {t(`categories.age.${tooltipApiladas.edad}`)}
                   </p>
                 </div>
               </div>
@@ -692,7 +692,7 @@ export const AnalisisDetallado = ({ animalData, allAnimalData, selectedYear }: A
                   <Calendar className="h-4 w-4 text-white" />
                 </div>
                 <h4 className="font-semibold text-amber-900 text-sm">
-                  {tooltipEdad.edad}
+                  {t(`categories.age.${tooltipEdad.edad}`)}
                 </h4>
               </div>
               
@@ -747,7 +747,7 @@ export const AnalisisDetallado = ({ animalData, allAnimalData, selectedYear }: A
                   <Users className="h-4 w-4 text-white" />
                 </div>
                 <h4 className="font-semibold text-amber-900 text-sm">
-                  {tooltipSexo.sexo}
+                  {t(`categories.sex.${tooltipSexo.sexo}`)}
                 </h4>
               </div>
               

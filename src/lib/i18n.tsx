@@ -57,6 +57,18 @@ const resources = {
       genderPercentage: 'Gender Percentage',
       percentage: 'Percentage',
       cattle: 'cattle'
+    },
+    categories: {
+      age: {
+        'MENOR A 1 AÑO': 'Under 1 Year',
+        '1 - 2 AÑOS': '1 - 2 Years',
+        '2 - 3 AÑOS': '2 - 3 Years',
+        'MAYOR A 3 AÑOS': 'Over 3 Years'
+      },
+      sex: {
+        MACHO: 'Male',
+        HEMBRA: 'Female'
+      }
     }
   },
   es: {
@@ -113,6 +125,18 @@ const resources = {
       genderPercentage: 'Porcentaje del Género',
       percentage: 'Porcentaje',
       cattle: 'bovinos'
+    },
+    categories: {
+      age: {
+        'MENOR A 1 AÑO': 'MENOR A 1 AÑO',
+        '1 - 2 AÑOS': '1 - 2 AÑOS',
+        '2 - 3 AÑOS': '2 - 3 AÑOS',
+        'MAYOR A 3 AÑOS': 'MAYOR A 3 AÑOS'
+      },
+      sex: {
+        MACHO: 'MACHO',
+        HEMBRA: 'HEMBRA'
+      }
     }
   }
 } as const;
