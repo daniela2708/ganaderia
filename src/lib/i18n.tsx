@@ -5,7 +5,7 @@ type Language = 'en' | 'es';
 const resources = {
   en: {
     header: {
-      title: 'Bovine Livestock Analysis System Colombia'
+      title: 'Colombian Bovine Census Analysis System'
     },
     tabs: {
       national: 'National Livestock Analysis',
@@ -61,7 +61,7 @@ const resources = {
   },
   es: {
     header: {
-      title: 'Sistema de Análisis Ganadero Bovino Colombia'
+      title: 'Sistema de Análisis del Censo Bovino Colombiano'
     },
     tabs: {
       national: 'Análisis Ganadero Nacional',

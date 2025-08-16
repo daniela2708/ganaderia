@@ -39,7 +39,7 @@ export const TabContent = ({
   const [selectedDepartamentoMetricas, setSelectedDepartamentoMetricas] = useState<string>('');
   const [selectedMunicipioMetricas, setSelectedMunicipioMetricas] = useState<string>('');
   
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
 
   const getTabTitle = () => {
     switch (tabId) {
@@ -296,13 +296,182 @@ export const TabContent = ({
 
   // Render fuente de datos content
   if (tabId === 'fuente-datos') {
+    if (lang === 'en') {
+      return (
+        <div className="container mx-auto p-4">
+          <div className="bg-white rounded-lg shadow-lg border border-amber-100 p-8">
+            <h2 className="text-3xl font-bold text-amber-900 mb-8 text-center">
+              Data Source
+            </h2>
+
+            <div className="space-y-8 text-amber-800">
+              {/* Relevant Information */}
+              <section>
+                <h3 className="text-2xl font-semibold text-amber-900 mb-4">
+                  ℹ️ Relevant Information
+                </h3>
+                <div className="bg-amber-50 border border-amber-200 rounded-lg p-6">
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-3">
+                      <div className="bg-amber-600 text-white rounded-lg p-2 flex-shrink-0">
+                        📅
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-amber-900 mb-1">Reference Period</h4>
+                        <p className="text-amber-800 text-sm">
+                          Data corresponds to the 2018-2025 period, consolidated annually
+                          by ICA using vaccination records and producer information.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-3">
+                      <div className="bg-amber-600 text-white rounded-lg p-2 flex-shrink-0">
+                        🔗
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-amber-900 mb-1">Official Source</h4>
+                        <p className="text-amber-800 text-sm">
+                          Colombian Agricultural Institute (ICA) -
+                          <a href="https://www.ica.gov.co/areas/pecuaria/servicios/epidemiologia-veterinaria/censos-2016/censo-2018" target="_blank" rel="noopener noreferrer" className="text-amber-600 hover:text-amber-800 underline ml-1">
+                            National Livestock Census
+                          </a>
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-3">
+                      <div className="bg-amber-600 text-white rounded-lg p-2 flex-shrink-0">
+                        📊
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-amber-900 mb-1">Data Usage</h4>
+                        <p className="text-amber-800 text-sm">
+                          This information is available for academic analysis,
+                          sector planning and policy decision-making related to the Colombian livestock sector.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* Dataset Information */}
+              <section>
+                <h3 className="text-2xl font-semibold text-amber-900 mb-4">
+                  📊 Bovine Census Dataset
+                </h3>
+                <div className="bg-amber-50 border border-amber-200 rounded-lg p-6">
+                  <p className="text-lg leading-relaxed mb-4">
+                    This livestock analysis dashboard is based on official data from the <strong>National Livestock Census</strong>
+                    conducted by the Colombian Agricultural Institute (ICA).
+                  </p>
+                  <p className="text-lg leading-relaxed mb-4">
+                    The data includes detailed information about the cattle population at departmental and municipal levels,
+                    consolidated annually from 2018 to 2025, including counts by animal type, age ranges,
+                    sex and geographic distribution.
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                    <div className="bg-white p-4 rounded-lg border border-amber-200">
+                      <h4 className="font-semibold text-amber-900 mb-2">📈 Main Variables</h4>
+                      <ul className="text-sm space-y-1">
+                        <li>• Total cattle by region</li>
+                        <li>• Distribution by departments</li>
+                        <li>• Counts by municipalities</li>
+                        <li>• Classification by age and sex</li>
+                        <li>• Vaccination records</li>
+                        <li>• Producer information</li>
+                      </ul>
+                    </div>
+                    <div className="bg-white p-4 rounded-lg border border-amber-200">
+                      <h4 className="font-semibold text-amber-900 mb-2">🗺️ Geographic Coverage</h4>
+                      <ul className="text-sm space-y-1">
+                        <li>• All departments of Colombia</li>
+                        <li>• Municipalities with livestock activity</li>
+                        <li>• Annual consolidated data</li>
+                        <li>• Period 2018-2025</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* Data Processing */}
+              <section>
+                <h3 className="text-2xl font-semibold text-amber-900 mb-4">
+                  🔄 Data Processing Workflow
+                </h3>
+                <div className="bg-amber-50 border border-amber-200 rounded-lg p-6">
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-4">
+                      <div className="bg-amber-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-1">
+                        1
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-amber-900 mb-2">Data Collection</h4>
+                        <p className="text-amber-800">
+                          Data is obtained from multiple sources: cattle vaccination records,
+                          producer information represented by guilds, and ICA active and passive surveillance visits.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-4">
+                      <div className="bg-amber-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-1">
+                        2
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-amber-900 mb-2">Consolidation and Validation</h4>
+                        <p className="text-amber-800">
+                          Data is consolidated annually by species, municipality and department,
+                          complemented with information from UMATAS, Agricultural Development secretariats and ICA surveillance records.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-4">
+                      <div className="bg-amber-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-1">
+                        3
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-amber-900 mb-2">Data Processing</h4>
+                        <p className="text-amber-800">
+                          Cattle data from the 2018-2025 period was specifically selected and processed,
+                          organizing it by different dimensions (geographic, temporal, demographic) to facilitate analysis.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-4">
+                      <div className="bg-amber-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-1">
+                        4
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-amber-900 mb-2">Interactive Visualization</h4>
+                        <p className="text-amber-800">
+                          The consolidated cattle data is presented in this interactive dashboard
+                          that allows exploring the information dynamically and accessibly,
+                          facilitating analysis of the Colombian livestock sector.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+            </div>
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div className="container mx-auto p-4">
         <div className="bg-white rounded-lg shadow-lg border border-amber-100 p-8">
           <h2 className="text-3xl font-bold text-amber-900 mb-8 text-center">
             Fuente de Datos
           </h2>
-          
+
           <div className="space-y-8 text-amber-800">
             {/* Información Relevante */}
             <section>
@@ -318,12 +487,12 @@ export const TabContent = ({
                     <div>
                       <h4 className="font-semibold text-amber-900 mb-1">Período de Referencia</h4>
                       <p className="text-amber-800 text-sm">
-                        Los datos corresponden al período 2018-2025, consolidados anualmente 
+                        Los datos corresponden al período 2018-2025, consolidados anualmente
                         por el ICA con información de registros de vacunación y productores.
                       </p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start gap-3">
                     <div className="bg-amber-600 text-white rounded-lg p-2 flex-shrink-0">
                       🔗
@@ -331,14 +500,14 @@ export const TabContent = ({
                     <div>
                       <h4 className="font-semibold text-amber-900 mb-1">Fuente Oficial</h4>
                       <p className="text-amber-800 text-sm">
-                        Instituto Colombiano Agropecuario (ICA) - 
+                        Instituto Colombiano Agropecuario (ICA) -
                         <a href="https://www.ica.gov.co/areas/pecuaria/servicios/epidemiologia-veterinaria/censos-2016/censo-2018" target="_blank" rel="noopener noreferrer" className="text-amber-600 hover:text-amber-800 underline ml-1">
                           Censo Pecuario Nacional
                         </a>
                       </p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start gap-3">
                     <div className="bg-amber-600 text-white rounded-lg p-2 flex-shrink-0">
                       📊
@@ -346,8 +515,8 @@ export const TabContent = ({
                     <div>
                       <h4 className="font-semibold text-amber-900 mb-1">Uso de los Datos</h4>
                       <p className="text-amber-800 text-sm">
-                        Esta información está disponible para análisis académicos, 
-                        planificación sectorial y toma de decisiones en políticas públicas 
+                        Esta información está disponible para análisis académicos,
+                        planificación sectorial y toma de decisiones en políticas públicas
                         relacionadas con el sector ganadero colombiano.
                       </p>
                     </div>
@@ -363,34 +532,34 @@ export const TabContent = ({
               </h3>
               <div className="bg-amber-50 border border-amber-200 rounded-lg p-6">
                 <p className="text-lg leading-relaxed mb-4">
-                  Este tablero de análisis ganadero se basa en datos oficiales del <strong>Censo Pecuario Nacional</strong> 
+                  Este tablero de análisis ganadero se basa en datos oficiales del <strong>Censo Pecuario Nacional</strong>
                   realizado por el Instituto Colombiano Agropecuario (ICA) de Colombia.
                 </p>
                 <p className="text-lg leading-relaxed mb-4">
-                  Los datos incluyen información detallada sobre la población bovina a nivel departamental y municipal, 
-                  consolidados anualmente desde 2018 hasta 2025, incluyendo conteos por tipo de animal, rangos de edad, 
+                  Los datos incluyen información detallada sobre la población bovina a nivel departamental y municipal,
+                  consolidados anualmente desde 2018 hasta 2025, incluyendo conteos por tipo de animal, rangos de edad,
                   sexo y distribución geográfica.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
                   <div className="bg-white p-4 rounded-lg border border-amber-200">
-                                         <h4 className="font-semibold text-amber-900 mb-2">📈 Variables Principales</h4>
-                     <ul className="text-sm space-y-1">
-                       <li>• Total de bovinos por región</li>
-                       <li>• Distribución por departamentos</li>
-                       <li>• Conteo por municipios</li>
-                       <li>• Clasificación por edad y sexo</li>
-                       <li>• Registros de vacunación</li>
-                       <li>• Información de productores</li>
-                     </ul>
+                    <h4 className="font-semibold text-amber-900 mb-2">📈 Variables Principales</h4>
+                    <ul className="text-sm space-y-1">
+                      <li>• Total de bovinos por región</li>
+                      <li>• Distribución por departamentos</li>
+                      <li>• Conteo por municipios</li>
+                      <li>• Clasificación por edad y sexo</li>
+                      <li>• Registros de vacunación</li>
+                      <li>• Información de productores</li>
+                    </ul>
                   </div>
                   <div className="bg-white p-4 rounded-lg border border-amber-200">
-                                         <h4 className="font-semibold text-amber-900 mb-2">🗺️ Cobertura Geográfica</h4>
-                     <ul className="text-sm space-y-1">
-                       <li>• Todos los departamentos de Colombia</li>
-                       <li>• Municipios con actividad ganadera</li>
-                       <li>• Datos consolidados anualmente</li>
-                       <li>• Período 2018-2025</li>
-                     </ul>
+                    <h4 className="font-semibold text-amber-900 mb-2">🗺️ Cobertura Geográfica</h4>
+                    <ul className="text-sm space-y-1">
+                      <li>• Todos los departamentos de Colombia</li>
+                      <li>• Municipios con actividad ganadera</li>
+                      <li>• Datos consolidados anualmente</li>
+                      <li>• Período 2018-2025</li>
+                    </ul>
                   </div>
                 </div>
               </div>
@@ -408,63 +577,60 @@ export const TabContent = ({
                       1
                     </div>
                     <div>
-                                           <h4 className="font-semibold text-amber-900 mb-2">Recolección de Datos</h4>
-                     <p className="text-amber-800">
-                       Los datos se obtienen de múltiples fuentes: registros de vacunación bovina, 
-                       información de productores representados por gremios, y visitas de vigilancia 
-                       activa y pasiva del ICA.
-                     </p>
+                      <h4 className="font-semibold text-amber-900 mb-2">Recolección de Datos</h4>
+                      <p className="text-amber-800">
+                        Los datos se obtienen de múltiples fuentes: registros de vacunación bovina,
+                        información de productores representados por gremios, y visitas de vigilancia
+                        activa y pasiva del ICA.
+                      </p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start gap-4">
                     <div className="bg-amber-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-1">
                       2
                     </div>
                     <div>
-                                           <h4 className="font-semibold text-amber-900 mb-2">Consolidación y Validación</h4>
-                     <p className="text-amber-800">
-                       Los datos se consolidan anualmente por especie, municipio y departamento, 
-                       complementándose con información de UMATAS, secretarías de Desarrollo 
-                       Agropecuario y registros de vigilancia del ICA.
-                     </p>
+                      <h4 className="font-semibold text-amber-900 mb-2">Consolidación y Validación</h4>
+                      <p className="text-amber-800">
+                        Los datos se consolidan anualmente por especie, municipio y departamento,
+                        complementándose con información de UMATAS, secretarías de Desarrollo
+                        Agropecuario y registros de vigilancia del ICA.
+                      </p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start gap-4">
                     <div className="bg-amber-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-1">
                       3
                     </div>
                     <div>
-                                           <h4 className="font-semibold text-amber-900 mb-2">Procesamiento de Datos</h4>
-                     <p className="text-amber-800">
-                       Se seleccionaron y procesaron específicamente los datos de bovinos del 
-                       período 2018-2025, organizándolos por diferentes dimensiones (geográficas, 
-                       temporales, demográficas) para facilitar el análisis.
-                     </p>
+                      <h4 className="font-semibold text-amber-900 mb-2">Procesamiento de Datos</h4>
+                      <p className="text-amber-800">
+                        Se seleccionaron y procesaron específicamente los datos de bovinos del
+                        período 2018-2025, organizándolos por diferentes dimensiones (geográficas,
+                        temporales, demográficas) para facilitar el análisis.
+                      </p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start gap-4">
                     <div className="bg-amber-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-1">
                       4
                     </div>
                     <div>
-                                           <h4 className="font-semibold text-amber-900 mb-2">Visualización Interactiva</h4>
-                     <p className="text-amber-800">
-                       Los datos consolidados de bovinos se presentan en este tablero interactivo 
-                       que permite explorar la información de manera dinámica y accesible, 
-                       facilitando el análisis del sector ganadero colombiano.
-                     </p>
+                      <h4 className="font-semibold text-amber-900 mb-2">Visualización Interactiva</h4>
+                      <p className="text-amber-800">
+                        Los datos consolidados de bovinos se presentan en este tablero interactivo
+                        que permite explorar la información de manera dinámica y accesible,
+                        facilitando el análisis del sector ganadero colombiano.
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
             </section>
 
-            
-
-            
           </div>
         </div>
       </div>
