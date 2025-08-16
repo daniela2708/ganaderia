@@ -130,14 +130,14 @@ export const UnifiedNavigation = ({ tabs, activeTab, onTabChange }: UnifiedNavig
     <nav className="fixed top-0 left-0 right-0 z-50 shadow-lg">
       {/* Header Section */}
       <div className="bg-white border-b border-border">
-        <div className="container mx-auto px-6 py-3">
-          <div className="flex items-center justify-center gap-3">
-            <img 
-              src={cattleIcon} 
+        <div className="container mx-auto px-4 py-2 sm:px-6 sm:py-3">
+          <div className="flex flex-col items-center justify-center gap-2 sm:flex-row sm:gap-3">
+            <img
+              src={cattleIcon}
               alt="Cattle Analysis"
-              className="w-20 h-20 object-contain drop-shadow-sm rounded-full bg-white/10 p-2"
+              className="w-16 h-16 p-1 sm:w-20 sm:h-20 sm:p-2 object-contain drop-shadow-sm rounded-full bg-white/10"
             />
-            <h1 className="text-2xl font-bold text-foreground tracking-wide">
+            <h1 className="text-lg font-bold text-center sm:text-left sm:text-2xl text-foreground tracking-wide">
               Sistema de Análisis Ganadero Bovino
             </h1>
           </div>
@@ -146,7 +146,7 @@ export const UnifiedNavigation = ({ tabs, activeTab, onTabChange }: UnifiedNavig
       
       {/* Tabs Section */}
       <div className="bg-primary relative overflow-hidden border-0">
-        <div className="container mx-auto px-6 py-1.5 border-0">
+        <div className="container mx-auto px-2 py-1 sm:px-6 sm:py-1.5 border-0">
         <DndContext
           sensors={sensors}
           collisionDetection={closestCenter}
