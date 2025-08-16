@@ -23,6 +23,7 @@ import { CSS } from '@dnd-kit/utilities';
 import { cn } from '@/lib/utils';
 import { TabItem } from '@/types/dashboard';
 import { GripVertical, MapPin, Building, Map } from 'lucide-react';
+import { useI18n } from '@/lib/i18n';
 
 const getTabIcon = (tabId: string) => {
   switch (tabId) {
@@ -101,6 +102,7 @@ interface UnifiedNavigationProps {
 
 export const UnifiedNavigation = ({ tabs, activeTab, onTabChange }: UnifiedNavigationProps) => {
   const [tabItems, setTabItems] = useState(tabs);
+  const { t, lang, toggle } = useI18n();
   
   useEffect(() => {
     setTabItems(tabs);
@@ -131,15 +133,23 @@ export const UnifiedNavigation = ({ tabs, activeTab, onTabChange }: UnifiedNavig
       {/* Header Section */}
       <div className="bg-white border-b border-border">
         <div className="container mx-auto px-6 py-3">
-          <div className="flex items-center justify-center gap-3">
-            <img 
-              src={cattleIcon} 
-              alt="Cattle Analysis"
-              className="w-20 h-20 object-contain drop-shadow-sm rounded-full bg-white/10 p-2"
-            />
-            <h1 className="text-2xl font-bold text-foreground tracking-wide">
-              Sistema de Análisis Ganadero Bovino
-            </h1>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <img
+                src={cattleIcon}
+                alt="Cattle Analysis"
+                className="w-20 h-20 object-contain drop-shadow-sm rounded-full bg-white/10 p-2"
+              />
+              <h1 className="text-2xl font-bold text-foreground tracking-wide">
+                {t('app.title')}
+              </h1>
+            </div>
+            <button
+              onClick={toggle}
+              className="px-3 py-1 text-sm border rounded"
+            >
+              {lang === 'en' ? 'ES' : 'EN'}
+            </button>
           </div>
         </div>
       </div>
