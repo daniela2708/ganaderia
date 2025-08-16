@@ -11,6 +11,7 @@ import { AnalisisDetallado } from './AnalisisDetallado';
 import { ActiveFiltersTags } from './ActiveFiltersTags';
 import { procesarDatosBovinos } from '@/utils/dataProcessor';
 import { useState } from 'react';
+import { useI18n } from '@/lib/i18n';
 
 interface TabContentProps {
   tabId: string;
@@ -30,7 +31,7 @@ export const TabContent = ({
   availableYears 
 }: TabContentProps) => {
   console.log('TabContent render - tabId:', tabId);
-  
+
   // Estado para el departamento seleccionado en la tab de municipios
   const [selectedDepartamento, setSelectedDepartamento] = useState<string>('');
   
@@ -38,18 +39,20 @@ export const TabContent = ({
   const [selectedDepartamentoMetricas, setSelectedDepartamentoMetricas] = useState<string>('');
   const [selectedMunicipioMetricas, setSelectedMunicipioMetricas] = useState<string>('');
   
+  const { t } = useI18n();
+
   const getTabTitle = () => {
     switch (tabId) {
       case 'departamento':
-        return 'Información por Departamento';
+        return t('tabs.department');
       case 'municipios':
-        return 'Información por Municipios';
+        return t('tabs.municipalities');
       case 'metricas-generales':
-        return 'Análisis Ganadero Nacional';
+        return t('tabs.national');
       case 'fuente-datos':
-        return 'Fuente de Datos';
+        return t('tabs.dataSource');
       default:
-        return 'Información por Departamento';
+        return t('tabs.department');
     }
   };
 
@@ -99,7 +102,7 @@ export const TabContent = ({
           <div className="bg-white rounded-lg shadow p-4">
             <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 mb-4">
               <h3 className="text-sm font-medium text-amber-900 text-center">
-                Ranking por Departamento - {selectedYear}
+                {t('rankings.department', { year: selectedYear })}
               </h3>
             </div>
             <RankingDepartamentos 
@@ -183,7 +186,7 @@ export const TabContent = ({
           <div className="bg-white rounded-lg shadow p-4">
             <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 mb-4">
               <h3 className="text-sm font-medium text-amber-900 text-center">
-                Ranking por Municipio - {selectedYear}
+                {t('rankings.municipality', { year: selectedYear })}
               </h3>
             </div>
             <RankingMunicipios 
