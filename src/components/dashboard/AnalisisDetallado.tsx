@@ -658,7 +658,11 @@ export const AnalisisDetallado = ({ animalData, allAnimalData, selectedYear }: A
                   <PieChart className="h-4 w-4 text-white" />
                 </div>
                 <div>
-                  <p className="text-xs text-amber-700 font-medium">{t('charts.genderPercentage')}</p>
+                  <p className="text-xs text-amber-700 font-medium">
+                    {t('charts.genderPercentage', {
+                      gender: t(`categories.sex.${tooltipApiladas.sexo}`)
+                    })}
+                  </p>
                   <p className="text-lg font-bold text-amber-900">
                     {tooltipApiladas.porcentaje.toFixed(1)}%
                   </p>
