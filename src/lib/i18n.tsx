@@ -54,7 +54,7 @@ const resources = {
       averagePerFarm: 'Average per Farm',
       yoyGrowth: 'YoY Growth',
       ageRange: 'Age Range',
-      genderPercentage: 'Gender Percentage',
+      genderPercentage: '{{gender}} Percentage',
       percentage: 'Percentage',
       cattle: 'cattle'
     },
@@ -122,7 +122,7 @@ const resources = {
       averagePerFarm: 'Promedio por Finca',
       yoyGrowth: 'Crecimiento YoY',
       ageRange: 'Rango de Edad',
-      genderPercentage: 'Porcentaje del Género',
+      genderPercentage: 'Porcentaje de {{gender}}',
       percentage: 'Porcentaje',
       cattle: 'bovinos'
     },
